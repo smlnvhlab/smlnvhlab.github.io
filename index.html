@@ -4,766 +4,578 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Solid Mechanics & NVH Lab | IIT Indore</title>
-
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    scroll-behavior:smooth;
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#0a2a4a;
+  --gold:#f7a531;
+  --light:#f4f7fb;
+  --white:#ffffff;
+  --text:#222;
+  --shadow:0 4px 18px rgba(10,42,74,0.10);
 }
+html{scroll-behavior:smooth;}
+body{font-family:'Segoe UI',sans-serif;color:var(--text);background:var(--light);}
 
-body{
-    font-family: 'Segoe UI', sans-serif;
-    line-height:1.6;
-    color:#222;
-    background:#f8fafc;
-}
+/* ─── NAVBAR ─── */
+header{background:var(--navy);position:sticky;top:0;z-index:1000;box-shadow:0 2px 12px rgba(0,0,0,0.25);}
+.navbar{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:14px 24px;}
+.logo-area{display:flex;align-items:center;gap:12px;}
+.logo-area img{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);}
+.logo-area h2{font-size:18px;color:white;letter-spacing:0.5px;}
+nav ul{display:flex;list-style:none;gap:18px;}
+nav ul li a{color:rgba(255,255,255,0.85);text-decoration:none;font-size:14px;font-weight:500;padding:4px 0;border-bottom:2px solid transparent;transition:.2s;}
+nav ul li a:hover{color:var(--gold);border-bottom-color:var(--gold);}
 
-header{
-    background:#0a2a4a;
-    color:white;
-    position:sticky;
-    top:0;
-    z-index:1000;
-    box-shadow:0 2px 10px rgba(0,0,0,0.2);
-}
-
-.navbar{
-    max-width:1200px;
-    margin:auto;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 20px;
-}
-
-.logo-area{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.logo-area img{
-    width:55px;
-    height:55px;
-    border-radius:50%;
-}
-
-.logo-area h2{
-    font-size:20px;
-}
-
-nav ul{
-    display:flex;
-    list-style:none;
-    gap:20px;
-}
-
-nav ul li a{
-    color:white;
-    text-decoration:none;
-    font-weight:500;
-}
-
-nav ul li a:hover{
-    color:#f7a531;
-}
-
+/* ─── HERO ─── */
 .hero{
-    background:linear-gradient(rgba(5,25,55,0.8),rgba(5,25,55,0.8)),
-    url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1600');
-    background-size:cover;
-    background-position:center;
-    color:white;
-    text-align:center;
-    padding:100px 20px;
+  background:linear-gradient(135deg,rgba(5,18,45,0.92) 0%,rgba(10,42,74,0.85) 100%),
+  url('https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=1600') center/cover no-repeat;
+  color:white;text-align:center;padding:110px 24px 90px;
 }
+.hero-badge{display:inline-block;background:var(--gold);color:#000;font-size:12px;font-weight:700;letter-spacing:1.5px;padding:5px 14px;border-radius:20px;margin-bottom:18px;text-transform:uppercase;}
+.hero h1{font-size:50px;font-weight:800;line-height:1.15;margin-bottom:14px;}
+.hero h1 span{color:var(--gold);}
+.hero-sub{font-size:18px;opacity:.85;max-width:700px;margin:0 auto 10px;}
+.hero-dept{font-size:15px;opacity:.65;margin-bottom:32px;}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn{display:inline-block;padding:12px 28px;background:var(--gold);color:#000;font-weight:700;font-size:14px;border-radius:8px;text-decoration:none;transition:.2s;}
+.btn:hover{background:#ffbf54;transform:translateY(-2px);}
+.btn-outline{background:transparent;border:2px solid white;color:white;}
+.btn-outline:hover{background:white;color:var(--navy);}
 
-.hero h1{
-    font-size:55px;
-    margin-bottom:15px;
+/* ─── ACCORDION SECTIONS ─── */
+.page-sections{max-width:1100px;margin:50px auto;padding:0 20px;}
+.accordion-item{background:var(--white);border-radius:16px;margin-bottom:20px;box-shadow:var(--shadow);overflow:hidden;border:1px solid rgba(10,42,74,0.07);}
+.accordion-header{
+  display:flex;align-items:center;gap:16px;
+  padding:22px 28px;cursor:pointer;
+  background:var(--white);transition:.25s;
+  user-select:none;
 }
-
-.hero p{
-    font-size:22px;
-    max-width:900px;
-    margin:auto;
+.accordion-header:hover{background:#f0f5ff;}
+.accordion-header.open{background:var(--navy);color:white;}
+.accordion-icon{
+  width:46px;height:46px;border-radius:12px;
+  background:linear-gradient(135deg,var(--navy),#1a4a7a);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;flex-shrink:0;
 }
+.accordion-header.open .accordion-icon{background:rgba(255,255,255,0.15);}
+.accordion-label{flex:1;}
+.accordion-label h3{font-size:20px;font-weight:700;color:var(--navy);margin-bottom:2px;}
+.accordion-label p{font-size:13px;color:#666;}
+.accordion-header.open .accordion-label h3{color:white;}
+.accordion-header.open .accordion-label p{color:rgba(255,255,255,0.65);}
+.accordion-arrow{font-size:20px;color:#999;transition:.3s;margin-left:auto;}
+.accordion-header.open .accordion-arrow{transform:rotate(180deg);color:white;}
+.accordion-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(0.4,0,0.2,1);}
+.accordion-body.open{max-height:5000px;}
+.accordion-content{padding:30px 28px;}
 
-.section{
-    max-width:1200px;
-    margin:auto;
-    padding:80px 20px;
+/* ─── ABOUT ─── */
+.about-text{font-size:16.5px;line-height:1.8;color:#444;max-width:820px;margin:0 auto;text-align:center;}
+
+/* ─── PI CARD ─── */
+.pi-wrap{display:flex;gap:36px;align-items:flex-start;flex-wrap:wrap;}
+.pi-photo{position:relative;flex-shrink:0;}
+.pi-photo img{width:240px;height:280px;object-fit:cover;border-radius:14px;box-shadow:0 6px 24px rgba(0,0,0,0.14);}
+.pi-photo-overlay{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(transparent,rgba(10,42,74,0.85));
+  border-radius:0 0 14px 14px;padding:14px;color:white;font-size:13px;font-weight:600;text-align:center;
 }
+.pi-details{flex:1;min-width:260px;}
+.pi-details h3{font-size:28px;color:var(--navy);margin-bottom:6px;}
+.pi-title{color:var(--gold);font-weight:600;font-size:15px;margin-bottom:12px;}
+.pi-meta{font-size:15px;color:#555;line-height:1.7;margin-bottom:16px;}
+.tag-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+.tag{background:#e8f0fb;color:var(--navy);font-size:12px;font-weight:600;padding:5px 12px;border-radius:20px;}
 
-.section-title{
-    text-align:center;
-    font-size:38px;
-    color:#0a2a4a;
-    margin-bottom:40px;
-}
+/* ─── RESEARCH GRID ─── */
+.research-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:20px;}
+.r-card{background:var(--light);border-radius:14px;padding:22px 20px;border-left:4px solid var(--gold);transition:.25s;}
+.r-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(10,42,74,0.12);}
+.r-card .r-icon{font-size:30px;margin-bottom:10px;}
+.r-card h4{font-size:17px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.r-card p{font-size:14px;color:#555;line-height:1.6;}
 
-.about{
-    text-align:center;
-    font-size:18px;
-}
+/* ─── PROJECTS ─── */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;}
+.p-card{background:linear-gradient(135deg,var(--navy),#1a4a7a);border-radius:14px;padding:24px 20px;color:white;position:relative;overflow:hidden;transition:.25s;}
+.p-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(10,42,74,0.25);}
+.p-card::before{content:'';position:absolute;top:-20px;right:-20px;width:80px;height:80px;border-radius:50%;background:rgba(247,165,49,0.15);}
+.p-card h4{font-size:16px;font-weight:700;position:relative;}
+.p-card p{font-size:13px;margin-top:8px;opacity:.75;position:relative;}
 
-.pi-card{
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    gap:40px;
-    background:white;
-    padding:30px;
-    border-radius:15px;
-    box-shadow:0 4px 15px rgba(0,0,0,0.08);
-}
+/* ─── FACILITIES ─── */
+.facilities-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;}
+.f-card{background:var(--white);border-radius:12px;padding:20px;text-align:center;border:1px solid #e0e8f0;transition:.25s;}
+.f-card:hover{border-color:var(--gold);box-shadow:0 4px 16px rgba(247,165,49,0.2);}
+.f-card .f-icon{font-size:32px;margin-bottom:10px;}
+.f-card h4{font-size:15px;font-weight:700;color:var(--navy);}
 
-.pi-card img{
-    width:280px;
-    border-radius:15px;
-}
+/* ─── PUBLICATIONS ─── */
+.pub-tabs{display:flex;gap:10px;margin-bottom:22px;flex-wrap:wrap;}
+.pub-tab{padding:8px 20px;border-radius:8px;border:2px solid #dde4ef;background:white;font-size:14px;font-weight:600;cursor:pointer;color:var(--navy);transition:.2s;}
+.pub-tab.active{background:var(--navy);color:white;border-color:var(--navy);}
+.pub-list{display:none;}
+.pub-list.active{display:block;}
+.pub-list ol{padding-left:22px;}
+.pub-list ol li{font-size:14px;line-height:1.7;margin-bottom:12px;color:#333;}
+.pub-list ol li i{color:#666;}
 
-.pi-info h3{
-    color:#0a2a4a;
-    font-size:32px;
-}
+/* ─── TEAM ─── */
+.team-section{margin-bottom:28px;}
+.team-section h4{font-size:17px;font-weight:700;color:var(--navy);margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid var(--gold);display:inline-block;}
+.scholar-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin-bottom:20px;}
+.scholar-card{background:var(--light);border-radius:12px;padding:18px 16px;}
+.scholar-card .s-name{font-weight:700;color:var(--navy);font-size:15px;margin-bottom:4px;}
+.scholar-card .s-topic{font-size:13px;color:#555;line-height:1.5;}
+.alumni-table{width:100%;border-collapse:collapse;font-size:14px;}
+.alumni-table th{background:var(--navy);color:white;padding:11px 14px;text-align:left;}
+.alumni-table td{padding:10px 14px;border-bottom:1px solid #e8eef5;}
+.alumni-table tr:hover td{background:#f0f5ff;}
+.mtech-list{columns:2;gap:28px;list-style:disc;padding-left:20px;}
+.mtech-list li{font-size:14px;margin-bottom:6px;break-inside:avoid;}
 
-.pi-info p{
-    margin-top:10px;
-}
+/* ─── CONTACT ─── */
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;}
+.c-card{background:var(--light);border-radius:14px;padding:26px;text-align:center;}
+.c-icon{font-size:34px;margin-bottom:12px;}
+.c-card h4{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.c-card p{font-size:14px;color:#555;line-height:1.65;}
+.c-card a{color:var(--navy);font-weight:600;text-decoration:none;}
+.c-card a:hover{color:var(--gold);}
 
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:25px;
-}
+/* ─── FOOTER ─── */
+footer{background:var(--navy);color:white;text-align:center;padding:36px 24px;margin-top:60px;}
+footer p{opacity:.75;font-size:14px;margin-bottom:4px;}
 
-.card{
-    background:white;
-    padding:25px;
-    border-radius:15px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.08);
-    transition:0.3s;
-}
-
-.card:hover{
-    transform:translateY(-6px);
-}
-
-.card h3{
-    color:#0a2a4a;
-    margin-bottom:12px;
-}
-
-.card ul{
-    padding-left:20px;
-}
-
-.team{
-    background:white;
-    padding:30px;
-    border-radius:15px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.08);
-}
-
-.team ul{
-    padding-left:20px;
-}
-
-footer{
-    background:#0a2a4a;
-    color:white;
-    text-align:center;
-    padding:35px;
-    margin-top:50px;
-}
-
-.contact-box{
-    background:white;
-    padding:30px;
-    border-radius:15px;
-    text-align:center;
-    box-shadow:0 4px 12px rgba(0,0,0,0.08);
-}
-
-.hero-buttons{
-    margin-top:30px;
-}
-
-.btn{
-    display:inline-block;
-    padding:12px 24px;
-    background:#f7a531;
-    color:#000;
-    text-decoration:none;
-    border-radius:8px;
-    font-weight:bold;
-}
-
-.btn:hover{
-    background:#ffbf54;
-}
-
-@media(max-width:900px){
-
-.hero h1{
-font-size:38px;
-}
-
-nav ul{
-display:none;
-}
-
-.pi-card{
-flex-direction:column;
-text-align:center;
-}
+/* ─── RESPONSIVE ─── */
+@media(max-width:768px){
+  .hero h1{font-size:30px;}
+  nav ul{display:none;}
+  .pi-photo img{width:100%;height:auto;}
+  .mtech-list{columns:1;}
 }
 </style>
 </head>
-
 <body>
 
+<!-- NAVBAR -->
 <header>
-<div class="navbar">
-
-<div class="logo-area">
-<img src="logo.png" alt="Lab Logo">
-<h2>SM & NVH Lab</h2>
-</div>
-
-<nav>
-<ul>
-<li><a href="#about">About</a></li>
-<li><a href="#pi">PI</a></li>
-<li><a href="#research">Research</a></li>
-<li><a href="#projects">Projects</a></li>
-<li><a href="#facilities">Facilities</a></li>
-<li><a href="#team">Team</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-</nav>
-
-</div>
+  <div class="navbar">
+    <div class="logo-area">
+      <img src="logo.png" alt="Lab Logo">
+      <h2>SM &amp; NVH Lab</h2>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#sec-about">About</a></li>
+        <li><a href="#sec-pi">PI</a></li>
+        <li><a href="#sec-research">Research</a></li>
+        <li><a href="#sec-projects">Projects</a></li>
+        <li><a href="#sec-facilities">Facilities</a></li>
+        <li><a href="#sec-publications">Publications</a></li>
+        <li><a href="#sec-team">Team</a></li>
+        <li><a href="#sec-contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
+<!-- HERO -->
 <section class="hero">
-<h1>Solid Mechanics & NVH Laboratory</h1>
-
-<p>
-Department of Mechanical Engineering<br>
-Indian Institute of Technology Indore
-</p>
-
-<br>
-
-<p>
-Advancing Research in Structural Dynamics, Noise-Vibration-Harshness,
-Condition Monitoring, Signal Processing and Artificial Intelligence.
-</p>
-
-<div class="hero-buttons">
-<a href="#research" class="btn">Explore Research</a>
-</div>
+  <div class="hero-badge">IIT Indore · Est. 2010</div>
+  <h1>Solid Mechanics &amp; <span>NVH</span> Laboratory</h1>
+  <p class="hero-sub">Advancing Research in Structural Dynamics, Noise-Vibration-Harshness, Condition Monitoring, Signal Processing &amp; Artificial Intelligence</p>
+  <p class="hero-dept">Department of Mechanical Engineering · Indian Institute of Technology Indore</p>
+  <div class="hero-btns">
+    <a href="#sec-research" class="btn">Explore Research</a>
+    <a href="#sec-publications" class="btn btn-outline">View Publications</a>
+  </div>
 </section>
 
-<section class="section" id="about">
-
-<h2 class="section-title">About the Laboratory</h2>
-
-<div class="about">
-<p>
-The Solid Mechanics and Noise, Vibration & Harshness (NVH) Laboratory at
-IIT Indore is dedicated to cutting-edge research in structural dynamics,
-condition monitoring, machine learning, signal processing and predictive
-maintenance. The laboratory focuses on developing intelligent diagnostic
-and prognostic systems for modern engineering applications.
-</p>
-</div>
-
-</section>
-
-<section class="section" id="pi">
-
-<h2 class="section-title">Principal Investigator</h2>
-
-<div class="pi-card">
-
-<img src="Prof.JPG" alt="Prof Anand Parey">
-
-<div class="pi-info">
-
-<h3>Prof. Anand Parey</h3>
-
-<p>
-Professor & Head<br>
-Department of Mechanical Engineering<br>
-Indian Institute of Technology Indore
-</p>
-
-<br>
-
-<p>
-Research Interests:
-Structural Dynamics, Rotating Machinery,
-Fault Diagnosis, Vibration Analysis,
-Condition Monitoring and Predictive Maintenance.
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="section" id="research">
-
-<h2 class="section-title">Research Areas</h2>
-
-<div class="grid">
-
-<div class="card">
-<h3>Solid Mechanics</h3>
-<p>Analysis and modelling of engineering structures.</p>
-</div>
-
-<div class="card">
-<h3>Structural Dynamics</h3>
-<p>Dynamic behaviour and vibration response of structures.</p>
-</div>
-
-<div class="card">
-<h3>NVH</h3>
-<p>Noise, Vibration and Harshness analysis for industrial systems.</p>
-</div>
-
-<div class="card">
-<h3>Condition Monitoring</h3>
-<p>Health assessment and fault detection in machinery.</p>
-</div>
-
-<div class="card">
-<h3>Signal Processing</h3>
-<p>FFT, STFT, Wavelet and advanced feature extraction techniques.</p>
-</div>
-
-<div class="card">
-<h3>Machine Learning & AI</h3>
-<p>Intelligent diagnostics and predictive maintenance systems.</p>
-</div>
-
-</div>
-
-</section>
-
-<section class="section" id="projects">
-
-<h2 class="section-title">Research Projects</h2>
-
-<div class="grid">
-
-<div class="card">
-<h3>Bearing Fault Diagnosis</h3>
-</div>
-
-<div class="card">
-<h3>Physics-Informed AI</h3>
-</div>
-
-<div class="card">
-<h3>Structural Health Monitoring</h3>
-</div>
-
-<div class="card">
-<h3>Digital Twin Technologies</h3>
-</div>
-
-<div class="card">
-<h3>Predictive Maintenance</h3>
-</div>
-
-</div>
-
-</section>
-
-<section class="section" id="facilities">
-
-<h2 class="section-title">Laboratory Facilities</h2>
-
-<div class="grid">
-
-<div class="card"><h3>Vibration Test Rig</h3></div>
-<div class="card"><h3>Accelerometers</h3></div>
-<div class="card"><h3>DAQ Systems</h3></div>
-<div class="card"><h3>MATLAB Toolboxes</h3></div>
-<div class="card"><h3>Python Analytics</h3></div>
-<div class="card"><h3>FFT / STFT Analysis Setup</h3></div>
-
-</div>
-
-</section>
-
-<section class="section" id="publications">
-
-<h2 class="section-title">Publications</h2>
-
-<div class="card">
-
-<h3>Peer Reviewed & Scopus Indexed Journal Papers</h3>
-
-<ol>
-
-<li>
-Parey and N. Tandon, <i>Spur Gear Dynamic Models Including Defects - A Review</i>,
-Shock and Vibration Digest, Vol. 35(6), 2003, pp. 465-478.
-</li>
-
-<li>
-Parey, M. El Badaoui, F. Guillet and N. Tandon,
-<i>Dynamic Modeling of Spur Gear Pair and Application of Empirical Mode Decomposition Based Statistical Analysis for Early Detection of Localized Tooth Defect</i>,
-Journal of Sound and Vibration, 294, 2006, pp. 547-561.
-</li>
-
-<li>
-Parey and N. Tandon,
-<i>Impact Velocity Modeling and Signal Processing of Spur Gear Vibration for the Estimation of Defect Size</i>,
-Mechanical Systems and Signal Processing, 21(1), 2007, pp. 234-243.
-</li>
-
-<li>
-Siyan Wu, Ming J. Zuo and Anand Parey,
-<i>Simulation of Spur Gear Dynamics and Estimation of Fault Growth</i>,
-Journal of Sound and Vibration, 317(3), 2008, pp. 608-624.
-</li>
-
-<li>
-A. Parey and N. Tandon,
-<i>Detection of Gear Spall Using Wavelet Transform</i>,
-Current Development in Theory and Applications of Wavelet, 2007.
-</li>
-
-<li>
-A. Parey and N. Tandon,
-<i>Dynamic Modeling and Empirical Mode Decomposition of Spur Gear Vibration for Early Detection of Crack</i>,
-International Journal of COMADEM, 2009.
-</li>
-
-<li>
-Parey and R.B. Pachori,
-<i>Variable Cosine Windowing of Intrinsic Mode Functions: Application to Gear Fault Diagnosis</i>,
-Measurement, 45(3), 2012, pp. 415-426.
-</li>
-
-<li>
-Yogesh Pandya and Anand Parey,
-<i>Failure Path Based Modified Gear Mesh Stiffness for Spur Gear Pair with Tooth Root Crack</i>,
-Engineering Failure Analysis, 27, 2013, pp. 286-296.
-</li>
-
-<li>
-Nizar Ahamed, Yogesh Pandya and Anand Parey,
-<i>Spur Gear Tooth Root Crack Detection Using Time Synchronous Averaging Under Fluctuating Speed</i>,
-Measurement, 52, 2014, pp. 1-11.
-</li>
-
-<li>
-Anand Parey and Ram Bilas Pachori,
-<i>Gear Fault Diagnosis Based on Central Tendency Measure of Intrinsic Mode Functions</i>,
-International Journal of COMADEM, 2014.
-</li>
-
-<li>
-Ankur Saxena, Anand Parey and Manoj Chouksey,
-<i>Effect of Shaft Misalignment and Friction Force on Time Varying Mesh Stiffness of Spur Gear Pair</i>,
-Engineering Failure Analysis, 49, 2015.
-</li>
-
-<li>
-Naresh K. Raghuwanshi and Anand Parey,
-<i>Mesh Stiffness Measurement of Cracked Spur Gear by Photoelasticity Technique</i>,
-Measurement, 73, 2015.
-</li>
-
-<li>
-A. Parey,
-<i>Vibration Reduction of Juicer: A Case Study</i>,
-Noise and Vibration Worldwide, 2015.
-</li>
-
-<li>
-Sharma V., Parey A.,
-<i>Gear Crack Detection Using Modified TSA and Proposed Fault Indicators for Fluctuating Speed Conditions</i>,
-Measurement, 2016.
-</li>
-
-<li>
-Saxena A., Parey A., Chouksey M.,
-<i>Time Varying Mesh Stiffness Calculation of Spur Gear Pair Considering Sliding Friction and Spalling Defects</i>,
-Engineering Failure Analysis, 2016.
-</li>
-
-<li>
-Sharma V., Parey A.,
-<i>Gearbox Fault Diagnosis by RMS Based Probability Density Function and Entropy Measures Under Various Fluctuating Speeds</i>,
-Structural Health Monitoring, 2016.
-</li>
-
-<li>
-Saxena A., Chouksey M., Parey A.,
-<i>Effect of Mesh Stiffness of Healthy and Cracked Gear Tooth on Modal and Frequency Response Characteristics of Geared Rotor System</i>,
-Mechanism and Machine Theory, 2017.
-</li>
-
-<li>
-Sharma R.B., Parey A., Tandon N.,
-<i>Modelling of Acoustic Emission Generated in Involute Spur Gear Pair</i>,
-Journal of Sound and Vibration, 2017.
-</li>
-
-<li>
-Singh A., Parey A.,
-<i>Gearbox Fault Diagnosis Under Fluctuating Load Conditions Using Wavelet Transform and Neural Network</i>,
-IET Science Measurement & Technology, 2017.
-</li>
-
-<li>
-Sharma R.B., Parey A.,
-<i>Modelling of Acoustic Emission Generated by Crack Propagation in Spur Gear</i>,
-Engineering Fracture Mechanics, 2017.
-</li>
-
-<li>
-Singh A., Parey A.,
-<i>Gearbox Fault Diagnosis Under Non-Stationary Conditions Using Vibration and Sound Signals</i>,
-Applied Acoustics, 2019.
-</li>
-
-<li>
-Parey A., Singh A.,
-<i>Gearbox Fault Diagnosis Using Acoustic Signals, Continuous Wavelet Transform and ANFIS</i>,
-Applied Acoustics, 2019.
-</li>
-
-<li>
-Sharma V., Parey A.,
-<i>Performance Evaluation of Decomposition Methods to Diagnose Leakage in a Reciprocating Compressor</i>,
-Mechanical Systems and Signal Processing, 2019.
-</li>
-
-<li>
-Gupta P., Parey A.,
-<i>Prediction of Sound Transmission Loss of Cylindrical Acoustic Enclosure Using Statistical Energy Analysis</i>,
-Journal of the Acoustical Society of America, 2022.
-</li>
-
-<li>
-Kumar A., Parey A., Kankar P.K.,
-<i>Supervised Machine Learning Based Approach for Early Fault Detection in Polymer Gears Using Vibration Signals</i>,
-MAPAN, 2023.
-</li>
-
-<li>
-Kumar A., Parey A., Kankar P.K.,
-<i>A New Hybrid LSTM-GRU Model for Fault Diagnosis of Polymer Gears Using Vibration Signals</i>,
-Journal of Vibration Engineering and Technologies, 2024.
-</li>
-
-</ol>
-
-</div>
-
-<div class="card">
-
-<h3>Peer Reviewed & Scopus Indexed Conference Papers</h3>
-
-<ol>
-
-<li>Parey and N. Tandon, <i>On Line Diagnostics of Gear Errors</i>, International Conference on E-Manufacturing, Bhopal, India, 2002.</li>
-
-<li>Parey and N. Tandon, <i>Impact Velocity Modeling of Gear Vibration to Estimate Defect Width</i>, International Symposium on Stability Control of Rotating Machinery, Poland, 2003.</li>
-
-<li>Parey and N. Tandon, <i>Dynamic Modeling of Spur Gear Including a Crack</i>, International Symposium on Stability Control of Rotating Machinery, USA, 2005.</li>
-
-<li>Anand Parey and Ram Bilas Pachori, <i>Modified Empirical Mode Decomposition for Improved Fault Diagnosis</i>, IFTOMM Rotor Dynamics Conference, Seoul, South Korea, 2010.</li>
-
-<li>Y. Pandya and A. Parey, <i>Fault Detection of a Two-Stage Gearbox Using Vibration Monitoring</i>, Indian International Conference on Artificial Intelligence, 2011.</li>
-
-<li>Yogesh Pandya and Anand Parey, <i>Finite Element Analysis and Numerical Simulation of Spur Gear Pair with Tooth Root Crack</i>, ASME IMECE, Houston, USA, 2012.</li>
-
-<li>Ankur Saxena, Anand Parey and Amod C. Umarikar, <i>Modeling of Gear Sets Using Bond Graph Approach</i>, ICRAM, Indore, 2013.</li>
-
-<li>Naresh K. Raghuwanshi and Anand Parey, <i>Radial Location of Strain Gauge on Cracked Tooth Root</i>, ICRAM, Indore, 2013.</li>
-
-<li>Vikas Sharma and Anand Parey, <i>Study of Root Tooth Crack in Thin Walled Spur Gear on Mode Shapes</i>, ICRAM, Indore, 2013.</li>
-
-<li>Saxena, Chouksey and Parey, <i>Modal Analysis of Geared Rotor System Using Finite Element Method</i>, NUICONE, Ahmedabad, 2015.</li>
-
-<li>Saxena, Parey and Chouksey, <i>Study of Modal Characteristics of a Geared Rotor System</i>, ICIAME, 2016.</li>
-
-<li>Sharma R.B. and Parey A., <i>Gear Fault Diagnosis Using Probability Density Functions and Entropy Measures for Acoustic Emission Signal</i>, VIRM11, Manchester, UK, 2016.</li>
-
-<li>Sharma V. and Parey A., <i>Gearbox Fault Diagnosis by Amplitude Based Probability Density Function</i>, ISME Conference, IIT Delhi, 2015.</li>
-
-<li>Sharma V. and Parey A., <i>A Review of Gear Fault Diagnosis Using Various Condition Monitoring Indicators</i>, ICVP, IIT Guwahati, 2015.</li>
-
-<li>Gupta P. and Parey A., <i>Experimental Investigation of Sound Absorbing Material on Noise Reduction Performance</i>, Lecture Notes in Mechanical Engineering, 2021.</li>
-
-<li>Kumar A., Parey A. and Kankar P.K., <i>Vibration Based Fault Detection of Polymer Gear</i>, Materials Today Proceedings, 2021.</li>
-
-<li>Gangsar P., Ali Z., Chouksey M. and Parey A., <i>An Intelligent and Robust Fault Diagnostics for an Electromechanical System Using Vibration and Current Signals</i>, Lecture Notes in Mechanical Engineering, 2022.</li>
-
-</ol>
-
-</div>
-
-</section>
-```
-
-
-<div class="card">
-<h3>Patents</h3>
-<p>Add granted and filed patents here.</p>
-</div>
-
-</div>
-
-</section>
-
-<section class="section" id="team">
-
-<h2 class="section-title">Research Team & Academic Guidance</h2>
-
-<div class="team">
-
-<h3>Faculty</h3>
-<ul>
-<li><strong>Prof. Anand Parey</strong><br>
-Professor & Head<br>
-Department of Mechanical Engineering<br>
-Indian Institute of Technology Indore
-</li>
-</ul>
-
-<br>
-
-<h3>Lab Assistant</h3>
-<ul>
-<li>Mr. Sandeep Patil</li>
-</ul>
-
-<br>
-
-<h3>Current PhD Scholars</h3>
-<ul>
-<li>Pallavi Gautam – Gear Fault Diagnosis using Acoustic Emission Technique</li>
-<li>Sonu Paroche – Failure Analysis of Automotive Gearboxes</li>
-<li>Santosh Yadav – Dynamic Modelling for Gearbox Fault Detection</li>
-<li>Yogesh Andhale – Gear Fault Diagnosis using AI and ML Techniques</li>
-</ul>
-
-<br>
-
-<h3>MS Research Scholars</h3>
-<ul>
-<li>Akash Yadav – AI-Based Condition Monitoring and Fault Diagnosis</li>
-</ul>
-
-<br>
-
-<h3>PhD Alumni</h3>
-
-<table style="width:100%;border-collapse:collapse;">
-<tr style="background:#0a2a4a;color:white;">
-<th style="padding:10px;">Scholar</th>
-<th style="padding:10px;">Research Topic</th>
-<th style="padding:10px;">Year</th>
-</tr>
-
-<tr><td>Yogesh Pandya</td><td>Mesh Stiffness Studies of Spur Gear Pair with Tooth Root Crack</td><td>2013</td></tr>
-
-<tr><td>Vikas Sharma</td><td>Gearbox Fault Diagnosis under Fluctuating Speed Conditions using Vibration Analysis</td><td>2017</td></tr>
-
-<tr><td>Ankur Saxena</td><td>Investigation of Mesh Stiffness and Modal Characteristics of Geared Rotor System with Defects</td><td>2017</td></tr>
-
-<tr><td>Naresh Raghuwanshi</td><td>Experimental Techniques for Measurement of Gear Mesh Stiffness</td><td>2017</td></tr>
-
-<tr><td>Ram Bihari Sharma</td><td>Modelling of Acoustic Emission Generated in Spur Gear Pair and Rolling Element Bearing</td><td>2017</td></tr>
-
-<tr><td>Amardeep Singh Ahuja</td><td>Gear Fault Diagnosis using Artificial Intelligence</td><td>2019</td></tr>
-
-<tr><td>Palash Dewangan</td><td>Dynamic Modelling of Wind Turbine Planetary Gearbox</td><td>2022</td></tr>
-
-<tr><td>Pavan Gupta</td><td>Noise and Vibration Control of Gearbox</td><td>2022</td></tr>
-
-<tr><td>Vinod Singh Thakur</td><td>Force and Vibration Analysis in Mechanical Preparation of Endodontic Files</td><td>2022</td></tr>
-
-<tr><td>Dada Saheb Ramteke</td><td>Gear Fault Diagnosis using Advanced Signal Processing Techniques</td><td>2023</td></tr>
-
-<tr><td>Anupam Kumar</td><td>Fault Diagnosis of Plastic Gears</td><td>2023</td></tr>
-
-</table>
-
-<br><br>
-
-<h3>M.Tech Alumni</h3>
-
-<ul>
-<li>Pravin Rai (2016)</li>
-<li>Rajat Kasiwal (2017)</li>
-<li>Gaurav Kumar (2017)</li>
-<li>Rahul Kashyap (2017)</li>
-<li>Vivek Rana (2018)</li>
-<li>Kushagra Kastwar (2020)</li>
-<li>Shashank Choudhary (2020)</li>
-<li>Shivam Kumar (2020)</li>
-<li>Pankaj Chaurasia (2022)</li>
-<li>Desai Umesh Dhanaji (2022)</li>
-<li>Utkarsh Saxena (2022)</li>
-<li>Igave Sayali Dinesh (2022)</li>
-<li>Gaikwad Akshay Jagannath (2022)</li>
-<li>Shubham Kumar (2023)</li>
-<li>Amarprakash Chandrakant Singh (2024)</li>
-</ul>
-
-</div>
-
-</section>
-
-</section>
-
-<section class="section" id="contact">
-
-<h2 class="section-title">Contact</h2>
-
-<div class="contact-box">
-
-<h3>Solid Mechanics & NVH Laboratory</h3>
-
-<p>
-Department of Mechanical Engineering<br>
-Indian Institute of Technology Indore<br>
-Simrol, Indore, Madhya Pradesh, India
-</p>
-
-<br>
-
-<p>
-Website: https://smlnvhlab.github.io
-</p>
-
-</div>
-
-</section>
+<!-- ACCORDION SECTIONS -->
+<div class="page-sections">
+
+  <!-- 1. ABOUT -->
+  <div class="accordion-item" id="sec-about">
+    <div class="accordion-header open" onclick="toggleAccordion(this)">
+      <div class="accordion-icon">🏛️</div>
+      <div class="accordion-label">
+        <h3>About the Laboratory</h3>
+        <p>Our mission, focus &amp; vision</p>
+      </div>
+      <span class="accordion-arrow">▼</span>
+    </div>
+    <div class="accordion-body open">
+      <div class="accordion-content">
+        <p class="about-text">
+          The Solid Mechanics and Noise, Vibration &amp; Harshness (NVH) Laboratory at IIT Indore is dedicated to cutting-edge research in structural dynamics, condition monitoring, machine learning, signal processing and predictive maintenance. The laboratory focuses on developing intelligent diagnostic and prognostic systems for modern engineering applications — bridging the gap between classical mechanics and data-driven intelligence.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. PI -->
+  <div class="accordion-item" id="sec-pi">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div class="accordion-icon">👨‍🔬</div>
+      <div class="accordion-label">
+        <h3>Principal Investigator</h3>
+        <p>Prof. Anand Parey — Professor &amp; Head, ME Dept.</p>
+      </div>
+      <span class="accordion-arrow">▼</span>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+        <div class="pi-wrap">
+          <div class="pi-photo">
+            <img src="Prof.JPG" alt="Prof Anand Parey" onerror="this.src='https://via.placeholder.com/240x280?text=Prof.+Parey'">
+            <div class="pi-photo-overlay">Prof. Anand Parey</div>
+          </div>
+          <div class="pi-details">
+            <h3>Prof. Anand Parey</h3>
+            <div class="pi-title">Professor &amp; Head, Department of Mechanical Engineering</div>
+            <div class="pi-meta">
+              Indian Institute of Technology Indore<br>
+              Simrol, Indore, Madhya Pradesh – 453552, India
+            </div>
+            <p style="font-size:15px;color:#444;line-height:1.7;margin-bottom:14px;">
+              Prof. Parey is a leading researcher in the field of gear dynamics, vibration-based fault diagnosis, and condition monitoring of rotating machinery. With decades of experience, he has guided numerous PhD and MTech students and published extensively in top-ranked international journals.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Structural Dynamics</span>
+              <span class="tag">Rotating Machinery</span>
+              <span class="tag">Fault Diagnosis</span>
+              <span class="tag">Vibration Analysis</span>
+              <span class="tag">Condition Monitoring</span>
+              <span class="tag">Predictive Maintenance</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. RESEARCH -->
+  <div class="accordion-item" id="sec-research">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div class="accordion-icon">🔬</div>
+      <div class="accordion-label">
+        <h3>Research Areas</h3>
+        <p>6 core domains of active investigation</p>
+      </div>
+      <span class="accordion-arrow">▼</span>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+        <div class="research-grid">
+          <div class="r-card"><div class="r-icon">⚙️</div><h4>Solid Mechanics</h4><p>Analysis and modelling of deformation, stress, and failure in engineering structures under static and dynamic loading conditions.</p></div>
+          <div class="r-card"><div class="r-icon">📈</div><h4>Structural Dynamics</h4><p>Dynamic behaviour, natural frequencies, mode shapes and vibration response of mechanical structures.</p></div>
+          <div class="r-card"><div class="r-icon">🔊</div><h4>Noise, Vibration &amp; Harshness (NVH)</h4><p>Acoustic and vibration analysis to improve comfort, reliability and performance of industrial and automotive systems.</p></div>
+          <div class="r-card"><div class="r-icon">🩺</div><h4>Condition Monitoring</h4><p>Health assessment and fault detection in gears, bearings and rotating machinery using multi-sensor approaches.</p></div>
+          <div class="r-card"><div class="r-icon">📡</div><h4>Signal Processing</h4><p>FFT, STFT, Wavelet transforms, EMD, VMD and advanced statistical feature extraction for machinery diagnostics.</p></div>
+          <div class="r-card"><div class="r-icon">🤖</div><h4>Machine Learning &amp; AI</h4><p>Intelligent diagnostics using CNN, LSTM, GRU, ANFIS and hybrid deep learning models for predictive maintenance.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. PROJECTS -->
+  <div class="accordion-item" id="sec-projects">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div class="accordion-icon">📂</div>
+      <div class="accordion-label">
+        <h3>Research Projects</h3>
+        <p>Ongoing and completed funded projects</p>
+      </div>
+      <span class="accordion-arrow">▼</span>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+        <div class="projects-grid">
+          <div class="p-card"><h4>⚙️ Bearing Fault Diagnosis</h4><p>Rolling element bearing health monitoring using vibration and acoustic signals combined with deep learning.</p></div>
+          <div class="p-card"><h4>🧠 Physics-Informed AI</h4><p>Hybrid models integrating physical laws with data-driven neural networks for accurate fault prognosis.</p></div>
+          <div class="p-card"><h4>🏗️ Structural Health Monitoring</h4><p>Real-time sensing and damage detection systems for civil and mechanical structures.</p></div>
+          <div class="p-card"><h4>🔁 Digital Twin Technologies</h4><p>Virtual replicas of rotating machinery for simulation, monitoring and predictive control.</p></div>
+          <div class="p-card"><h4>🔧 Predictive Maintenance</h4><p>AI-driven maintenance scheduling to reduce downtime and improve machinery lifecycle.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. FACILITIES -->
+  <div class="accordion-item" id="sec-facilities">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div class="accordion-icon">🛠️</div>
+      <div class="accordion-label">
+        <h3>Laboratory Facilities</h3>
+        <p>Equipment, instruments &amp; software tools</p>
+      </div>
+      <span class="accordion-arrow">▼</span>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+        <div class="facilities-grid">
+          <div class="f-card"><div class="f-icon">⚙️</div><h4>Vibration Test Rig</h4></div>
+          <div class="f-card"><div class="f-icon">📟</div><h4>Accelerometers</h4></div>
+          <div class="f-card"><div class="f-icon">💾</div><h4>DAQ Systems</h4></div>
+          <div class="f-card"><div class="f-icon">📐</div><h4>MATLAB Toolboxes</h4></div>
+          <div class="f-card"><div class="f-icon">🐍</div><h4>Python Analytics</h4></div>
+          <div class="f-card"><div class="f-icon">📊</div><h4>FFT / STFT Analysis Setup</h4></div>
+          <div class="f-card"><div class="f-icon">🎙️</div><h4>Acoustic Emission Sensors</h4></div>
+          <div class="f-card"><div class="f-icon">🖥️</div><h4>High-Performance Computing</h4></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. PUBLICATIONS -->
+  <div class="accordion-item" id="sec-publications">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div class="accordion-icon">📚</div>
+      <div class="accordion-label">
+        <h3>Publications</h3>
+        <p>26 journal papers · 17 conference papers · Patents</p>
+      </div>
+      <span class="accordion-arrow">▼</span>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+        <div class="pub-tabs">
+          <button class="pub-tab active" onclick="switchTab(this,'tab-journal')">📄 Journal Papers (26)</button>
+          <button class="pub-tab" onclick="switchTab(this,'tab-conf')">🎤 Conference Papers (17)</button>
+          <button class="pub-tab" onclick="switchTab(this,'tab-patents')">🏷️ Patents</button>
+        </div>
+
+        <div id="tab-journal" class="pub-list active">
+          <ol>
+            <li>Parey and N. Tandon, <i>Spur Gear Dynamic Models Including Defects - A Review</i>, Shock and Vibration Digest, Vol. 35(6), 2003, pp. 465-478.</li>
+            <li>Parey, M. El Badaoui, F. Guillet and N. Tandon, <i>Dynamic Modeling of Spur Gear Pair and Application of EMD-Based Statistical Analysis for Early Detection of Localized Tooth Defect</i>, Journal of Sound and Vibration, 294, 2006, pp. 547-561.</li>
+            <li>Parey and N. Tandon, <i>Impact Velocity Modeling and Signal Processing of Spur Gear Vibration for the Estimation of Defect Size</i>, Mechanical Systems and Signal Processing, 21(1), 2007, pp. 234-243.</li>
+            <li>Siyan Wu, Ming J. Zuo and Anand Parey, <i>Simulation of Spur Gear Dynamics and Estimation of Fault Growth</i>, Journal of Sound and Vibration, 317(3), 2008, pp. 608-624.</li>
+            <li>A. Parey and N. Tandon, <i>Detection of Gear Spall Using Wavelet Transform</i>, Current Development in Theory and Applications of Wavelet, 2007.</li>
+            <li>A. Parey and N. Tandon, <i>Dynamic Modeling and Empirical Mode Decomposition of Spur Gear Vibration for Early Detection of Crack</i>, International Journal of COMADEM, 2009.</li>
+            <li>Parey and R.B. Pachori, <i>Variable Cosine Windowing of Intrinsic Mode Functions: Application to Gear Fault Diagnosis</i>, Measurement, 45(3), 2012, pp. 415-426.</li>
+            <li>Yogesh Pandya and Anand Parey, <i>Failure Path Based Modified Gear Mesh Stiffness for Spur Gear Pair with Tooth Root Crack</i>, Engineering Failure Analysis, 27, 2013, pp. 286-296.</li>
+            <li>Nizar Ahamed, Yogesh Pandya and Anand Parey, <i>Spur Gear Tooth Root Crack Detection Using Time Synchronous Averaging Under Fluctuating Speed</i>, Measurement, 52, 2014, pp. 1-11.</li>
+            <li>Anand Parey and Ram Bilas Pachori, <i>Gear Fault Diagnosis Based on Central Tendency Measure of Intrinsic Mode Functions</i>, International Journal of COMADEM, 2014.</li>
+            <li>Ankur Saxena, Anand Parey and Manoj Chouksey, <i>Effect of Shaft Misalignment and Friction Force on Time Varying Mesh Stiffness of Spur Gear Pair</i>, Engineering Failure Analysis, 49, 2015.</li>
+            <li>Naresh K. Raghuwanshi and Anand Parey, <i>Mesh Stiffness Measurement of Cracked Spur Gear by Photoelasticity Technique</i>, Measurement, 73, 2015.</li>
+            <li>A. Parey, <i>Vibration Reduction of Juicer: A Case Study</i>, Noise and Vibration Worldwide, 2015.</li>
+            <li>Sharma V., Parey A., <i>Gear Crack Detection Using Modified TSA and Proposed Fault Indicators for Fluctuating Speed Conditions</i>, Measurement, 2016.</li>
+            <li>Saxena A., Parey A., Chouksey M., <i>Time Varying Mesh Stiffness Calculation of Spur Gear Pair Considering Sliding Friction and Spalling Defects</i>, Engineering Failure Analysis, 2016.</li>
+            <li>Sharma V., Parey A., <i>Gearbox Fault Diagnosis by RMS Based Probability Density Function and Entropy Measures Under Various Fluctuating Speeds</i>, Structural Health Monitoring, 2016.</li>
+            <li>Saxena A., Chouksey M., Parey A., <i>Effect of Mesh Stiffness of Healthy and Cracked Gear Tooth on Modal and Frequency Response Characteristics of Geared Rotor System</i>, Mechanism and Machine Theory, 2017.</li>
+            <li>Sharma R.B., Parey A., Tandon N., <i>Modelling of Acoustic Emission Generated in Involute Spur Gear Pair</i>, Journal of Sound and Vibration, 2017.</li>
+            <li>Singh A., Parey A., <i>Gearbox Fault Diagnosis Under Fluctuating Load Conditions Using Wavelet Transform and Neural Network</i>, IET Science Measurement & Technology, 2017.</li>
+            <li>Sharma R.B., Parey A., <i>Modelling of Acoustic Emission Generated by Crack Propagation in Spur Gear</i>, Engineering Fracture Mechanics, 2017.</li>
+            <li>Singh A., Parey A., <i>Gearbox Fault Diagnosis Under Non-Stationary Conditions Using Vibration and Sound Signals</i>, Applied Acoustics, 2019.</li>
+            <li>Parey A., Singh A., <i>Gearbox Fault Diagnosis Using Acoustic Signals, Continuous Wavelet Transform and ANFIS</i>, Applied Acoustics, 2019.</li>
+            <li>Sharma V., Parey A., <i>Performance Evaluation of Decomposition Methods to Diagnose Leakage in a Reciprocating Compressor</i>, Mechanical Systems and Signal Processing, 2019.</li>
+            <li>Gupta P., Parey A., <i>Prediction of Sound Transmission Loss of Cylindrical Acoustic Enclosure Using Statistical Energy Analysis</i>, Journal of the Acoustical Society of America, 2022.</li>
+            <li>Kumar A., Parey A., Kankar P.K., <i>Supervised Machine Learning Based Approach for Early Fault Detection in Polymer Gears Using Vibration Signals</i>, MAPAN, 2023.</li>
+            <li>Kumar A., Parey A., Kankar P.K., <i>A New Hybrid LSTM-GRU Model for Fault Diagnosis of Polymer Gears Using Vibration Signals</i>, Journal of Vibration Engineering and Technologies, 2024.</li>
+          </ol>
+        </div>
+
+        <div id="tab-conf" class="pub-list">
+          <ol>
+            <li>Parey and N. Tandon, <i>On Line Diagnostics of Gear Errors</i>, International Conference on E-Manufacturing, Bhopal, India, 2002.</li>
+            <li>Parey and N. Tandon, <i>Impact Velocity Modeling of Gear Vibration to Estimate Defect Width</i>, International Symposium on Stability Control of Rotating Machinery, Poland, 2003.</li>
+            <li>Parey and N. Tandon, <i>Dynamic Modeling of Spur Gear Including a Crack</i>, International Symposium on Stability Control of Rotating Machinery, USA, 2005.</li>
+            <li>Anand Parey and Ram Bilas Pachori, <i>Modified Empirical Mode Decomposition for Improved Fault Diagnosis</i>, IFTOMM Rotor Dynamics Conference, Seoul, South Korea, 2010.</li>
+            <li>Y. Pandya and A. Parey, <i>Fault Detection of a Two-Stage Gearbox Using Vibration Monitoring</i>, Indian International Conference on Artificial Intelligence, 2011.</li>
+            <li>Yogesh Pandya and Anand Parey, <i>Finite Element Analysis and Numerical Simulation of Spur Gear Pair with Tooth Root Crack</i>, ASME IMECE, Houston, USA, 2012.</li>
+            <li>Ankur Saxena, Anand Parey and Amod C. Umarikar, <i>Modeling of Gear Sets Using Bond Graph Approach</i>, ICRAM, Indore, 2013.</li>
+            <li>Naresh K. Raghuwanshi and Anand Parey, <i>Radial Location of Strain Gauge on Cracked Tooth Root</i>, ICRAM, Indore, 2013.</li>
+            <li>Vikas Sharma and Anand Parey, <i>Study of Root Tooth Crack in Thin Walled Spur Gear on Mode Shapes</i>, ICRAM, Indore, 2013.</li>
+            <li>Saxena, Chouksey and Parey, <i>Modal Analysis of Geared Rotor System Using Finite Element Method</i>, NUICONE, Ahmedabad, 2015.</li>
+            <li>Saxena, Parey and Chouksey, <i>Study of Modal Characteristics of a Geared Rotor System</i>, ICIAME, 2016.</li>
+            <li>Sharma R.B. and Parey A., <i>Gear Fault Diagnosis Using Probability Density Functions and Entropy Measures for Acoustic Emission Signal</i>, VIRM11, Manchester, UK, 2016.</li>
+            <li>Sharma V. and Parey A., <i>Gearbox Fault Diagnosis by Amplitude Based Probability Density Function</i>, ISME Conference, IIT Delhi, 2015.</li>
+            <li>Sharma V. and Parey A., <i>A Review of Gear Fault Diagnosis Using Various Condition Monitoring Indicators</i>, ICVP, IIT Guwahati, 2015.</li>
+            <li>Gupta P. and Parey A., <i>Experimental Investigation of Sound Absorbing Material on Noise Reduction Performance</i>, Lecture Notes in Mechanical Engineering, 2021.</li>
+            <li>Kumar A., Parey A. and Kankar P.K., <i>Vibration Based Fault Detection of Polymer Gear</i>, Materials Today Proceedings, 2021.</li>
+            <li>Gangsar P., Ali Z., Chouksey M. and Parey A., <i>An Intelligent and Robust Fault Diagnostics for an Electromechanical System Using Vibration and Current Signals</i>, Lecture Notes in Mechanical Engineering, 2022.</li>
+          </ol>
+        </div>
+
+        <div id="tab-patents" class="pub-list">
+          <div style="text-align:center;padding:40px;color:#888;">
+            <div style="font-size:48px;margin-bottom:12px;">🏷️</div>
+            <p>Patents information will be added here. Please update with granted and filed patent details.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. TEAM -->
+  <div class="accordion-item" id="sec-team">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div class="accordion-icon">👥</div>
+      <div class="accordion-label">
+        <h3>Research Team</h3>
+        <p>Faculty, PhD scholars, MS scholars &amp; alumni</p>
+      </div>
+      <span class="accordion-arrow">▼</span>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+
+        <div class="team-section">
+          <h4>Faculty</h4>
+          <div class="scholar-cards">
+            <div class="scholar-card">
+              <div class="s-name">Prof. Anand Parey</div>
+              <div class="s-topic">Professor &amp; Head, Dept. of Mechanical Engineering, IIT Indore</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="team-section">
+          <h4>Lab Assistant</h4>
+          <div class="scholar-cards">
+            <div class="scholar-card">
+              <div class="s-name">Mr. Sandeep Patil</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="team-section">
+          <h4>Current PhD Scholars</h4>
+          <div class="scholar-cards">
+            <div class="scholar-card"><div class="s-name">Pallavi Gautam</div><div class="s-topic">Gear Fault Diagnosis using Acoustic Emission Technique</div></div>
+            <div class="scholar-card"><div class="s-name">Sonu Paroche</div><div class="s-topic">Failure Analysis of Automotive Gearboxes</div></div>
+            <div class="scholar-card"><div class="s-name">Santosh Yadav</div><div class="s-topic">Dynamic Modelling for Gearbox Fault Detection</div></div>
+            <div class="scholar-card"><div class="s-name">Yogesh Andhale</div><div class="s-topic">Gear Fault Diagnosis using AI and ML Techniques</div></div>
+          </div>
+        </div>
+
+        <div class="team-section">
+          <h4>MS Research Scholars</h4>
+          <div class="scholar-cards">
+            <div class="scholar-card"><div class="s-name">Akash Yadav</div><div class="s-topic">AI-Based Condition Monitoring and Fault Diagnosis</div></div>
+          </div>
+        </div>
+
+        <div class="team-section">
+          <h4>PhD Alumni</h4>
+          <table class="alumni-table">
+            <tr><th>Scholar</th><th>Research Topic</th><th>Year</th></tr>
+            <tr><td>Yogesh Pandya</td><td>Mesh Stiffness Studies of Spur Gear Pair with Tooth Root Crack</td><td>2013</td></tr>
+            <tr><td>Vikas Sharma</td><td>Gearbox Fault Diagnosis under Fluctuating Speed Conditions using Vibration Analysis</td><td>2017</td></tr>
+            <tr><td>Ankur Saxena</td><td>Investigation of Mesh Stiffness and Modal Characteristics of Geared Rotor System with Defects</td><td>2017</td></tr>
+            <tr><td>Naresh Raghuwanshi</td><td>Experimental Techniques for Measurement of Gear Mesh Stiffness</td><td>2017</td></tr>
+            <tr><td>Ram Bihari Sharma</td><td>Modelling of Acoustic Emission Generated in Spur Gear Pair and Rolling Element Bearing</td><td>2017</td></tr>
+            <tr><td>Amardeep Singh Ahuja</td><td>Gear Fault Diagnosis using Artificial Intelligence</td><td>2019</td></tr>
+            <tr><td>Palash Dewangan</td><td>Dynamic Modelling of Wind Turbine Planetary Gearbox</td><td>2022</td></tr>
+            <tr><td>Pavan Gupta</td><td>Noise and Vibration Control of Gearbox</td><td>2022</td></tr>
+            <tr><td>Vinod Singh Thakur</td><td>Force and Vibration Analysis in Mechanical Preparation of Endodontic Files</td><td>2022</td></tr>
+            <tr><td>Dada Saheb Ramteke</td><td>Gear Fault Diagnosis using Advanced Signal Processing Techniques</td><td>2023</td></tr>
+            <tr><td>Anupam Kumar</td><td>Fault Diagnosis of Plastic Gears</td><td>2023</td></tr>
+          </table>
+        </div>
+
+        <div class="team-section">
+          <h4>M.Tech Alumni</h4>
+          <ul class="mtech-list">
+            <li>Pravin Rai (2016)</li><li>Rajat Kasiwal (2017)</li><li>Gaurav Kumar (2017)</li>
+            <li>Rahul Kashyap (2017)</li><li>Vivek Rana (2018)</li><li>Kushagra Kastwar (2020)</li>
+            <li>Shashank Choudhary (2020)</li><li>Shivam Kumar (2020)</li><li>Pankaj Chaurasia (2022)</li>
+            <li>Desai Umesh Dhanaji (2022)</li><li>Utkarsh Saxena (2022)</li><li>Igave Sayali Dinesh (2022)</li>
+            <li>Gaikwad Akshay Jagannath (2022)</li><li>Shubham Kumar (2023)</li>
+            <li>Amarprakash Chandrakant Singh (2024)</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. CONTACT -->
+  <div class="accordion-item" id="sec-contact">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div class="accordion-icon">📬</div>
+      <div class="accordion-label">
+        <h3>Contact</h3>
+        <p>Location, website &amp; reach us</p>
+      </div>
+      <span class="accordion-arrow">▼</span>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+        <div class="contact-grid">
+          <div class="c-card">
+            <div class="c-icon">📍</div>
+            <h4>Address</h4>
+            <p>Solid Mechanics &amp; NVH Laboratory<br>Department of Mechanical Engineering<br>IIT Indore, Simrol<br>Indore, MP 453552, India</p>
+          </div>
+          <div class="c-card">
+            <div class="c-icon">🌐</div>
+            <h4>Website</h4>
+            <p><a href="https://smlnvhlab.github.io" target="_blank">smlnvhlab.github.io</a></p>
+          </div>
+          <div class="c-card">
+            <div class="c-icon">🏫</div>
+            <h4>Institute</h4>
+            <p><a href="https://www.iiti.ac.in" target="_blank">Indian Institute of Technology Indore</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end page-sections -->
 
 <footer>
-
-<p>
-© 2026 Solid Mechanics & NVH Laboratory | IIT Indore
-</p>
-
+  <p>© 2026 Solid Mechanics &amp; NVH Laboratory | IIT Indore</p>
+  <p>Department of Mechanical Engineering · Simrol, Indore, Madhya Pradesh</p>
 </footer>
 
+<script>
+function toggleAccordion(header) {
+  const body = header.nextElementSibling;
+  const isOpen = header.classList.contains('open');
+
+  // Close all
+  document.querySelectorAll('.accordion-header').forEach(h => {
+    h.classList.remove('open');
+    h.nextElementSibling.classList.remove('open');
+  });
+
+  // Open clicked if it was closed
+  if (!isOpen) {
+    header.classList.add('open');
+    body.classList.add('open');
+    // Smooth scroll
+    setTimeout(() => header.scrollIntoView({behavior:'smooth', block:'start'}), 50);
+  }
+}
+
+function switchTab(btn, tabId) {
+  btn.closest('.accordion-content').querySelectorAll('.pub-tab').forEach(t => t.classList.remove('active'));
+  btn.closest('.accordion-content').querySelectorAll('.pub-list').forEach(l => l.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(tabId).classList.add('active');
+}
+
+// Open section from navbar links
+document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', e => {
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      const header = target.querySelector('.accordion-header');
+      if (header && !header.classList.contains('open')) {
+        toggleAccordion(header);
+      }
+    }
+  });
+});
+</script>
 </body>
 </html>
