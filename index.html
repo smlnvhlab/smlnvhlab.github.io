@@ -1,29 +1,496 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Solid Mechanics & NVH Lab</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solid Mechanics & NVH Lab | IIT Indore</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family: 'Segoe UI', sans-serif;
+    line-height:1.6;
+    color:#222;
+    background:#f8fafc;
+}
+
+header{
+    background:#0a2a4a;
+    color:white;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 2px 10px rgba(0,0,0,0.2);
+}
+
+.navbar{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 20px;
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-area img{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+}
+
+.logo-area h2{
+    font-size:20px;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:20px;
+}
+
+nav ul li a{
+    color:white;
+    text-decoration:none;
+    font-weight:500;
+}
+
+nav ul li a:hover{
+    color:#f7a531;
+}
+
+.hero{
+    background:linear-gradient(rgba(5,25,55,0.8),rgba(5,25,55,0.8)),
+    url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1600');
+    background-size:cover;
+    background-position:center;
+    color:white;
+    text-align:center;
+    padding:100px 20px;
+}
+
+.hero h1{
+    font-size:55px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    font-size:22px;
+    max-width:900px;
+    margin:auto;
+}
+
+.section{
+    max-width:1200px;
+    margin:auto;
+    padding:80px 20px;
+}
+
+.section-title{
+    text-align:center;
+    font-size:38px;
+    color:#0a2a4a;
+    margin-bottom:40px;
+}
+
+.about{
+    text-align:center;
+    font-size:18px;
+}
+
+.pi-card{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:40px;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+.pi-card img{
+    width:280px;
+    border-radius:15px;
+}
+
+.pi-info h3{
+    color:#0a2a4a;
+    font-size:32px;
+}
+
+.pi-info p{
+    margin-top:10px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+}
+
+.card h3{
+    color:#0a2a4a;
+    margin-bottom:12px;
+}
+
+.card ul{
+    padding-left:20px;
+}
+
+.team{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+.team ul{
+    padding-left:20px;
+}
+
+footer{
+    background:#0a2a4a;
+    color:white;
+    text-align:center;
+    padding:35px;
+    margin-top:50px;
+}
+
+.contact-box{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+.hero-buttons{
+    margin-top:30px;
+}
+
+.btn{
+    display:inline-block;
+    padding:12px 24px;
+    background:#f7a531;
+    color:#000;
+    text-decoration:none;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.btn:hover{
+    background:#ffbf54;
+}
+
+@media(max-width:900px){
+
+.hero h1{
+font-size:38px;
+}
+
+nav ul{
+display:none;
+}
+
+.pi-card{
+flex-direction:column;
+text-align:center;
+}
+}
+</style>
 </head>
+
 <body>
-    <h1>Solid Mechanics & Noise, Vibration & Harshness (NVH) Lab</h1>
 
-    <h2>About the Lab</h2>
-    <p>
-        The Solid Mechanics and NVH Lab focuses on structural dynamics,
-        vibration analysis, condition monitoring, signal processing,
-        machine learning, and predictive maintenance.
-    </p>
+<header>
+<div class="navbar">
 
-    <h2>Research Areas</h2>
-    <ul>
-        <li>Solid Mechanics</li>
-        <li>Structural Dynamics</li>
-        <li>Noise, Vibration & Harshness (NVH)</li>
-        <li>Signal Processing</li>
-        <li>Condition Monitoring</li>
-        <li>Machine Learning & AI</li>
-    </ul>
+<div class="logo-area">
+<img src="logo.png" alt="Lab Logo">
+<h2>SM & NVH Lab</h2>
+</div>
 
-    <h2>Contact</h2>
-    <p>Department of Mechanical Engineering</p>
+<nav>
+<ul>
+<li><a href="#about">About</a></li>
+<li><a href="#pi">PI</a></li>
+<li><a href="#research">Research</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#facilities">Facilities</a></li>
+<li><a href="#team">Team</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class="hero">
+<h1>Solid Mechanics & NVH Laboratory</h1>
+
+<p>
+Department of Mechanical Engineering<br>
+Indian Institute of Technology Indore
+</p>
+
+<br>
+
+<p>
+Advancing Research in Structural Dynamics, Noise-Vibration-Harshness,
+Condition Monitoring, Signal Processing and Artificial Intelligence.
+</p>
+
+<div class="hero-buttons">
+<a href="#research" class="btn">Explore Research</a>
+</div>
+</section>
+
+<section class="section" id="about">
+
+<h2 class="section-title">About the Laboratory</h2>
+
+<div class="about">
+<p>
+The Solid Mechanics and Noise, Vibration & Harshness (NVH) Laboratory at
+IIT Indore is dedicated to cutting-edge research in structural dynamics,
+condition monitoring, machine learning, signal processing and predictive
+maintenance. The laboratory focuses on developing intelligent diagnostic
+and prognostic systems for modern engineering applications.
+</p>
+</div>
+
+</section>
+
+<section class="section" id="pi">
+
+<h2 class="section-title">Principal Investigator</h2>
+
+<div class="pi-card">
+
+<img src="prof_anand_parey.jpg" alt="Prof Anand Parey">
+
+<div class="pi-info">
+
+<h3>Prof. Anand Parey</h3>
+
+<p>
+Professor & Head<br>
+Department of Mechanical Engineering<br>
+Indian Institute of Technology Indore
+</p>
+
+<br>
+
+<p>
+Research Interests:
+Structural Dynamics, Rotating Machinery,
+Fault Diagnosis, Vibration Analysis,
+Condition Monitoring and Predictive Maintenance.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section" id="research">
+
+<h2 class="section-title">Research Areas</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Solid Mechanics</h3>
+<p>Analysis and modelling of engineering structures.</p>
+</div>
+
+<div class="card">
+<h3>Structural Dynamics</h3>
+<p>Dynamic behaviour and vibration response of structures.</p>
+</div>
+
+<div class="card">
+<h3>NVH</h3>
+<p>Noise, Vibration and Harshness analysis for industrial systems.</p>
+</div>
+
+<div class="card">
+<h3>Condition Monitoring</h3>
+<p>Health assessment and fault detection in machinery.</p>
+</div>
+
+<div class="card">
+<h3>Signal Processing</h3>
+<p>FFT, STFT, Wavelet and advanced feature extraction techniques.</p>
+</div>
+
+<div class="card">
+<h3>Machine Learning & AI</h3>
+<p>Intelligent diagnostics and predictive maintenance systems.</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="section" id="projects">
+
+<h2 class="section-title">Research Projects</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Bearing Fault Diagnosis</h3>
+</div>
+
+<div class="card">
+<h3>Physics-Informed AI</h3>
+</div>
+
+<div class="card">
+<h3>Structural Health Monitoring</h3>
+</div>
+
+<div class="card">
+<h3>Digital Twin Technologies</h3>
+</div>
+
+<div class="card">
+<h3>Predictive Maintenance</h3>
+</div>
+
+</div>
+
+</section>
+
+<section class="section" id="facilities">
+
+<h2 class="section-title">Laboratory Facilities</h2>
+
+<div class="grid">
+
+<div class="card"><h3>Vibration Test Rig</h3></div>
+<div class="card"><h3>Accelerometers</h3></div>
+<div class="card"><h3>DAQ Systems</h3></div>
+<div class="card"><h3>MATLAB Toolboxes</h3></div>
+<div class="card"><h3>Python Analytics</h3></div>
+<div class="card"><h3>FFT / STFT Analysis Setup</h3></div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2 class="section-title">Publications</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Journal Papers</h3>
+<p>Add published journal articles here.</p>
+</div>
+
+<div class="card">
+<h3>Conference Papers</h3>
+<p>Add conference publications here.</p>
+</div>
+
+<div class="card">
+<h3>Patents</h3>
+<p>Add granted and filed patents here.</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="section" id="team">
+
+<h2 class="section-title">Research Team</h2>
+
+<div class="team">
+
+<h3>Faculty</h3>
+<ul>
+<li>Prof. Anand Parey</li>
+</ul>
+
+<br>
+
+<h3>Lab Assistant</h3>
+<ul>
+<li>Mr. Sandeep Patil</li>
+</ul>
+
+<br>
+
+<h3>Research Scholars & Students</h3>
+<ul>
+<li>Akash Yadav (MS Research)</li>
+<li>Add other members here</li>
+</ul>
+
+</div>
+
+</section>
+
+<section class="section" id="contact">
+
+<h2 class="section-title">Contact</h2>
+
+<div class="contact-box">
+
+<h3>Solid Mechanics & NVH Laboratory</h3>
+
+<p>
+Department of Mechanical Engineering<br>
+Indian Institute of Technology Indore<br>
+Simrol, Indore, Madhya Pradesh, India
+</p>
+
+<br>
+
+<p>
+Website: https://smlnvhlab.github.io
+</p>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>
+© 2026 Solid Mechanics & NVH Laboratory | IIT Indore
+</p>
+
+</footer>
+
 </body>
 </html>
